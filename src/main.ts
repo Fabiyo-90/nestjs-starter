@@ -3,7 +3,7 @@ import { NestFactory } from '@nestjs/core';
 import { Logger, ValidationPipe, VersioningType } from '@nestjs/common';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { Environement } from 'src/load.env';
-import { AppModule } from 'src/app.module';
+import { RootModule } from 'src/root.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { WinstonConfig } from './configs/winston';
 import * as ip from 'ip';
@@ -12,7 +12,7 @@ const logger = new Logger('InstanceLoader');
 
 // For web application
 async function bootstrapWeppApp() {
-  const app = await NestFactory.create<NestExpressApplication>(AppModule, {
+  const app = await NestFactory.create<NestExpressApplication>(RootModule, {
     logger: WinstonConfig,
   });
 
